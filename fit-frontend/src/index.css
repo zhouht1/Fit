@@ -27,3 +27,46 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Button interactions */
+button {
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+button:active {
+  transform: scale(0.97);
+}
+button:hover {
+  opacity: 0.9;
+}
+
+/* Toast animation */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: slideIn 0.3s ease;
+}
+
+/* Skeleton pulse */
+@keyframes shimmer {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+.animate-pulse {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Mobile first */
+@media (max-width: 640px) {
+  .max-w-md {
+    max-width: 100%;
+  }
+}
