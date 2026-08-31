@@ -6,6 +6,9 @@ import WorkoutHistory from './components/WorkoutHistory';
 import WorkoutDetail from './components/WorkoutDetail';
 import BodyMeasurement from './components/BodyMeasurement';
 import ProgressChart from './components/ProgressChart';
+import PersonalRecords from './components/PersonalRecords';
+import ProgressiveOverload from './components/ProgressiveOverload';
+import StreakBanner from './components/StreakBanner';
 
 function App() {
   const [showRestTimer, setShowRestTimer] = useState(false);
@@ -14,6 +17,8 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
   const [showBody, setShowBody] = useState(false);
+  const [showPR, setShowPR] = useState(false);
+  const [showOverload, setShowOverload] = useState(false);
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<number | null>(null);
 
   const mockCompleteData = {
@@ -47,6 +52,17 @@ function App() {
             <button onClick={() => setShowBody(false)} className="mb-4 px-4 py-2 rounded-xl text-sm font-medium" style={{ color: 'var(--accent)' }}>← Back</button>
             <BodyMeasurement />
           </div>
+        ) : showPR ? (
+          <div>
+            <button onClick={() => setShowPR(false)} className="mb-4 px-4 py-2 rounded-xl text-sm font-medium" style={{ color: 'var(--accent)' }}>← Back</button>
+            <StreakBanner />
+            <div className="mt-4"><PersonalRecords /></div>
+          </div>
+        ) : showOverload ? (
+          <div>
+            <button onClick={() => setShowOverload(false)} className="mb-4 px-4 py-2 rounded-xl text-sm font-medium" style={{ color: 'var(--accent)' }}>← Back</button>
+            <ProgressiveOverload />
+          </div>
         ) : (
           <>
             <div className="flex gap-3 justify-center flex-wrap">
@@ -56,6 +72,8 @@ function App() {
               <button onClick={() => setShowHistory(true)} className="px-6 py-3 rounded-xl text-white font-medium" style={{ backgroundColor: 'var(--accent)' }}>History</button>
               <button onClick={() => setShowBody(true)} className="px-6 py-3 rounded-xl text-white font-medium" style={{ backgroundColor: 'var(--accent)' }}>Body</button>
               <button onClick={() => setShowProgress(true)} className="px-6 py-3 rounded-xl text-white font-medium" style={{ backgroundColor: 'var(--accent)' }}>Progress</button>
+              <button onClick={() => setShowPR(true)} className="px-6 py-3 rounded-xl text-white font-medium" style={{ backgroundColor: 'var(--accent)' }}>PR</button>
+              <button onClick={() => setShowOverload(true)} className="px-6 py-3 rounded-xl text-white font-medium" style={{ backgroundColor: 'var(--accent)' }}>Overload</button>
             </div>
             {showWorkoutTimer && <WorkoutTimer onFinish={() => { setShowWorkoutTimer(false); setShowComplete(true); }} />}
             {showRestTimer && <RestTimer onComplete={() => alert('Rest complete!')} onSkip={() => setShowRestTimer(false)} />}
